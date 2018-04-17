@@ -5,53 +5,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.bruger.birdwatching.MainActivity"
-    android:background="@drawable/bird">
+    tools:context="com.example.bruger.birdwatching.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="Welcome"
-        android:textSize="30dp"
-        android:layout_gravity="center"/>
+        android:textSize="30dp" />
 
     <Button
         android:id="@+id/signOutButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_gravity="right"
-        android:text="Log out"
-        android:onClick="signOut"/>
+        android:background="@drawable/ic_action_logout"
+        android:onClick="signOut" />
 
-    <LinearLayout
+    <Button
+        android:id="@+id/Birds"
+        style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:onClick="onClickBirds"
+        android:text="Birds" />
 
-        <Button
-            android:id="@+id/Birds"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Birds"
-            android:onClick="onClickBirds"/>
+    <Button
+        android:id="@+id/myObservationsButton"
+        style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClickMyObservation"
+        android:text="My observations" />
 
-        <Button
-            android:id="@+id/myObservationsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="My observations"
-            android:onClick="onClickMyObservation"/>
+    <Button
+        style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register bird" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Register bird"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Delete bird"/>
-
-    </LinearLayout>
+    <Button
+        style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete bird" />
 
 </LinearLayout>

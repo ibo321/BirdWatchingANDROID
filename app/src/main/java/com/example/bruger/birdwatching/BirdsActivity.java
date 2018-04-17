@@ -166,7 +166,7 @@ public class BirdsActivity extends AppCompatActivity implements GestureDetector.
                     try {
 
                         Intent intent = new Intent(getBaseContext(), ItemListActivity.class);
-                        intent.putExtra("NameEnglish", (Bird)listView.getItemAtPosition(i));
+                        intent.putExtra("NameEnglish", (Bird) listView.getItemAtPosition(i));
                         startActivity(intent);
 
                     } catch (Exception ex) {

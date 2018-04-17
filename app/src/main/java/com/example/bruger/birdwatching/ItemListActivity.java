@@ -30,7 +30,7 @@ public class ItemListActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             Bird obj = (Bird) bundle.getSerializable("NameEnglish");
-            this.nameEnglish.setText("ID: " + obj.getId() + "\n" + "English Name: " + obj.getNameEnglish() + "\n" +  "Danish Name: " + " " + obj.getNameDanish());
+            this.nameEnglish.setText("ID: " + obj.getId() + "\n" + "English Name: " + obj.getNameEnglish() + "\n" + "Danish Name: " + " " + obj.getNameDanish());
         }
     }
 }
