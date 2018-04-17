@@ -2,11 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.bruger.birdwatching.LoginActivity"
-    android:background="@drawable/nature">
+    android:background="@drawable/nature"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="com.example.bruger.birdwatching.LoginActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -18,15 +19,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Email:"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="#E3F2FD" />
+            android:textColor="@color/colorPrimary"
+            android:textSize="25dp" />
 
         <EditText
             android:id="@+id/emailContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
             android:ems="11"
-            android:textColor="#E3F2FD"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/colorPrimary"
             android:textSize="25dp" />
 
     </LinearLayout>
@@ -41,39 +44,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Password:"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="#E3F2FD" />
+            android:textColor="@color/colorPrimary"
+            android:textSize="25dp" />
 
         <EditText
             android:id="@+id/passwordContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
             android:ems="11"
-            android:textColor="#E3F2FD"
+            android:inputType="textPassword"
+            android:textColor="@color/colorPrimary"
             android:textSize="25dp" />
 
     </LinearLayout>
 
-    <LinearLayout
+
+    <Button
+        android:id="@+id/loginButton"
+        style="@android:style/Widget.Holo.Button"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:onClick="onClickLogin"
+        android:text="Login" />
 
-        <Button
-            android:id="@+id/loginButton"
-            style="@android:style/Widget.Holo.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onClickLogin"
-            android:text="Login" />
-
-        <Button
-            android:id="@+id/registerButton"
-            style="@android:style/Widget.Holo.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onClickRegister"
-            android:text="Register" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/registerButton"
+        style="@android:style/Widget.Holo.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickRegister"
+        android:text="Register" />
 
 </LinearLayout>

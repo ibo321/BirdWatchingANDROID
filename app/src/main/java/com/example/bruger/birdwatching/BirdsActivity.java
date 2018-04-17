@@ -2,6 +2,7 @@ package com.example.bruger.birdwatching;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -12,6 +13,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,10 +29,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.List;
 
 public class BirdsActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
 
-    ListView list;
+
     private GestureDetector gestureDetector;
 
     @Override
@@ -36,19 +41,16 @@ public class BirdsActivity extends AppCompatActivity implements GestureDetector.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_birds);
 
+        TextView listHeader = new TextView(this);
+        listHeader.setText("Birds");
+        listHeader.setTextAppearance(android.R.style.TextAppearance_Large);
+        ListView list = findViewById(R.id.birdsView);
+        list.addHeaderView(listHeader);
+
         gestureDetector = new GestureDetector(this, this);
-        list = (ListView) findViewById(R.id.birdsView);
+
         final BirdsActivity.ReadJSONFeedTask task = new BirdsActivity.ReadJSONFeedTask();
         task.execute("http://birdobservationservice.azurewebsites.net/Service1.svc/birds");
-
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(BirdsActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
     }
 
     @Override
@@ -78,11 +80,7 @@ public class BirdsActivity extends AppCompatActivity implements GestureDetector.
 
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        //Toast.makeText(this, "onFling", Toast.LENGTH_SHORT).show();
-        //Log.d(TAG, "onFling " + e1.toString() + "::::" + e2.toString());
-
         boolean leftSwipe = e1.getX() > e2.getX();
-        //Log.d(TAG, "onFling left: " + leftSwipe);
         if (leftSwipe) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
@@ -112,12 +110,13 @@ public class BirdsActivity extends AppCompatActivity implements GestureDetector.
 
         @Override
         protected void onPostExecute(String result) {
+            Log.d("mybird", result);
             TextView messageTextView = findViewById(R.id.messageText);
-
+            final List<Bird> birds = new ArrayList<>();
             try {
 
                 //Jeg sætter "Bird" klassen i et ArrayList så jeg kan udskrive dem i en ListView
-                ArrayList<Bird> birdlist = new ArrayList<>();
+                //ArrayList<Bird> birdlist = new ArrayList<>();
 
                 //Servicen starter med et array "[" og derfor skal der bruges et JSONArray før JSONObject
                 JSONArray jsonArray = new JSONArray(result);
@@ -144,24 +143,39 @@ public class BirdsActivity extends AppCompatActivity implements GestureDetector.
                     bird.setNameEnglish(nameEnglish);
                     bird.setPhotoUrl(photoUrl);
                     bird.setUserId(userId);
-
+                    Log.d("mybird", bird.toString());
                     //tilføjer klassen i en liste
-                    birdlist.add(bird);
+                    birds.add(bird);
                 }
-
-
-                ListView listView = findViewById(R.id.birdsView);
-
-                //opretter et nyt object af ArrayAdapter
-                ArrayAdapter<Bird> adapter = new ArrayAdapter<Bird>(BirdsActivity.this, android.R.layout.simple_list_item_1, birdlist);
-                listView.setAdapter(adapter);
-
 
             } catch (JSONException ex) {
                 messageTextView.setText(ex.toString());
             }
-        }
 
+            final ListView listView = findViewById(R.id.birdsView);
+
+            //opretter et nyt object af ArrayAdapter
+            //ArrayAdapter<Bird> adapter = new ArrayAdapter<Bird>(BirdsActivity.this, android.R.layout.simple_list_item_1, birds);
+
+            //Custom adapter jeg har oprettet
+            BirdItemAdapter adapter = new BirdItemAdapter(getBaseContext(), R.layout.specific_list, birds);
+            listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    try {
+
+                        Intent intent = new Intent(getBaseContext(), ItemListActivity.class);
+                        intent.putExtra("NameEnglish", (Bird)listView.getItemAtPosition(i));
+                        startActivity(intent);
+
+                    } catch (Exception ex) {
+                        Log.d("mybird", ex.toString());
+                    }
+
+                }
+            });
+        }
 
         @Override
         protected void onCancelled(String message) {

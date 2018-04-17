@@ -1,9 +1,12 @@
 package com.example.bruger.birdwatching;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class Bird implements Serializable {
 
+    @SerializedName("crerated")
     private String created;
     private int id;
     private String nameDanish;
@@ -38,6 +41,10 @@ public class Bird implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getNameDanish() {
+        return nameDanish;
     }
 
     public void setNameDanish(String nameDanish) {
