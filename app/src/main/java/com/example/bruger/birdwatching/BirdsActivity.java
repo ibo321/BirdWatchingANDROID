@@ -34,7 +34,7 @@ import java.util.List;
 public class BirdsActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
 
 
-    private GestureDetector gestureDetector;
+    GestureDetector gestureDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

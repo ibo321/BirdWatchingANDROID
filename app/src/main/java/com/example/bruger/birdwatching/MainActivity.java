@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -36,10 +37,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 finish();
                 startActivity(intent);
-            } else if (event2.getX() < event1.getX()) {
-
-            }
-            return true;
+            } return true;
         }
     }
 
@@ -60,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
+        Toast.makeText(this, "Goodbye!", Toast.LENGTH_LONG).show();
     }
 
 }
