@@ -33,5 +33,10 @@ public class ItemListActivity extends AppCompatActivity {
             this.nameEnglish.setText("ID: " + obj.getId() + "\n" + "English Name: " + obj.getNameEnglish() + "\n" + "Danish Name: " + " " + obj.getNameDanish());
         }
     }
+
+    public void onClickBackButton(View view) {
+        Intent intent = new Intent(ItemListActivity.this, BirdsActivity.class);
+        startActivity(intent);
+    }
 }
 

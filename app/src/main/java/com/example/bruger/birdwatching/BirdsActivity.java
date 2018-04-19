@@ -95,6 +95,11 @@ public class BirdsActivity extends AppCompatActivity implements GestureDetector.
         return gestureDetector.onTouchEvent(event);
     }
 
+    public void onClickBackButton(View view) {
+        Intent intent = new Intent(BirdsActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+
     private class ReadJSONFeedTask extends AsyncTask<String, Void, String> {
 
         @Override
