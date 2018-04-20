@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -46,13 +47,14 @@ public class BirdsActivity extends AppCompatActivity implements GestureDetector.
         listHeader.setTextAppearance(android.R.style.TextAppearance_Large);
         ListView list = findViewById(R.id.birdsView);
         list.addHeaderView(listHeader);
-
         gestureDetector = new GestureDetector(this, this);
 
         final BirdsActivity.ReadJSONFeedTask task = new BirdsActivity.ReadJSONFeedTask();
         task.execute("http://birdobservationservice.azurewebsites.net/Service1.svc/birds");
     }
 
+
+    //region Gesture
     @Override
     public boolean onDown(MotionEvent motionEvent) {
         return true;
@@ -94,12 +96,14 @@ public class BirdsActivity extends AppCompatActivity implements GestureDetector.
         //return eventHandlingFinished;
         return gestureDetector.onTouchEvent(event);
     }
+    //endregion
 
     public void onClickBackButton(View view) {
         Intent intent = new Intent(BirdsActivity.this, MainActivity.class);
         startActivity(intent);
     }
 
+    //region JSON async and REST
     private class ReadJSONFeedTask extends AsyncTask<String, Void, String> {
 
         @Override
@@ -225,5 +229,6 @@ public class BirdsActivity extends AppCompatActivity implements GestureDetector.
             throw new IOException("HTTP response not OK");
         }
     }
+    //endregion
 
 }

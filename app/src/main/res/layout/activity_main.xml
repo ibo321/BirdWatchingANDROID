@@ -1,75 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradientblue"
+    android:background="@drawable/gradient"
+    android:orientation="vertical"
     tools:context="com.example.bruger.birdwatching.MainActivity">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/birdwatchinglogoo"
-        tools:layout_editor_absoluteX="142dp"
-        tools:layout_editor_absoluteY="0dp" />
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar">
 
-    <Button
-        android:id="@+id/signOutButton"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_gravity="right"
-        android:background="@drawable/ic_action_logout"
-        android:onClick="signOut" />
 
-    <FrameLayout
-        android:layout_width="268dp"
-        android:layout_height="247dp"
-        android:layout_centerInParent="true">
+    </include>
 
-        <LinearLayout
-            android:layout_width="209dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/Birds"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_centerInParent="true"
+            android:layout_marginTop="250dp"
+            android:background="@drawable/radious"
+            android:onClick="onClickBirds"
+            android:text="Birds" />
+
+        <Button
+            android:id="@+id/myObservationsButton"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/radious"
+            android:onClick="onClickMyObservation"
+            android:text="My observations" />
+
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/radious"
+            android:text="Register bird" />
+
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/radious"
+            android:text="Delete bird" />
+    </LinearLayout>
 
 
-            <Button
-                android:id="@+id/Birds"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:onClick="onClickBirds"
-                android:text="Birds" />
-
-            <Button
-                android:id="@+id/myObservationsButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:onClick="onClickMyObservation"
-                android:text="My observations" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="Register bird" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="Delete bird" />
-        </LinearLayout>
-
-
-    </FrameLayout>
-
-
-</RelativeLayout>
+</LinearLayout>
