@@ -2,6 +2,7 @@ package com.example.bruger.birdwatching;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Region;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -35,6 +37,12 @@ public class RegisterActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.passwordRegisterEditText);
         signUp = findViewById(R.id.registerButton);
         progressDialog = new ProgressDialog(this);
+
+        //min appbar
+        Toolbar toolbar = findViewById(R.id.app_bar);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Adding click listener to Sign Up Button.
         signUp.setOnClickListener(new View.OnClickListener() {
@@ -115,10 +123,5 @@ public class RegisterActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                     }
                 });
-    }
-
-    public void onClickNavigate(View view) {
-        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-        startActivity(intent);
     }
 }

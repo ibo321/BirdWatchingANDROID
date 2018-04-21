@@ -7,17 +7,16 @@
     android:background="@drawable/gradient"
     tools:context=".RegisterActivity">
 
+    <include
+        layout="@layout/app_bar"
+        android:id="@+id/app_bar">
+
+    </include>
     <ImageView
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginLeft="105dp"
         android:background="@drawable/registericon" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onClickNavigate"
-        android:background="@drawable/ic_action_back_button" />
 
     <TextView
         android:layout_width="wrap_content"

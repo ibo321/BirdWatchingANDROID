@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.GestureDetectorCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -20,6 +22,7 @@ import android.widget.SearchView;
 //import android.support.v7.widget.SearchView;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,10 +37,12 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class BirdsActivity extends AppCompatActivity  {
 
     BirdItemAdapter adapter;
+    FloatingActionButton floatButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +52,16 @@ public class BirdsActivity extends AppCompatActivity  {
         Toolbar toolbar = findViewById(R.id.app_bar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        floatButton = findViewById(R.id.floatButtonAddBird);
+        floatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //skal kodes til at kunne POST
+                Toast.makeText(BirdsActivity.this, "float clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
         TextView listHeader = new TextView(this);
         listHeader.setText("Birds");
         listHeader.setTextAppearance(android.R.style.TextAppearance_Large);
@@ -209,10 +223,4 @@ public class BirdsActivity extends AppCompatActivity  {
         }
     }
     //endregion
-
-    public void onClickBackButton(View view) {
-        Intent intent = new Intent(BirdsActivity.this, MainActivity.class);
-        startActivity(intent);
-    }
-
 }

@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ActionMenuView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -41,8 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     Button login;
     boolean editTextStatus;
     ProgressDialog progressDialog;
-
-
+    ActionMenuView amvMenu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
             MenuBuilder m = (MenuBuilder) menu;
             m.setOptionalIconsVisible(true);
         }
-        //jeg fjerner logout-button i loginactivity
+        //jeg fjerner de navigation-buttons i loginactivity
         menu.findItem(R.id.logout).setVisible(false);
         menu.findItem(R.id.search).setVisible(false);
         return super.onCreateOptionsMenu(menu);

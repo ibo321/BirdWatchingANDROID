@@ -4,13 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ItemListActivity">
 
-    <ImageButton
-        android:onClick="onClickBackButton"
-        android:background="@drawable/ic_action_back_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <include
+        layout="@layout/app_bar"
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </include>
+
     <TextView
         android:id="@+id/birdItemTextView"
         android:layout_width="wrap_content"

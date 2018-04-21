@@ -1,9 +1,11 @@
 package com.example.bruger.birdwatching;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -21,10 +23,16 @@ public class ItemListActivity extends AppCompatActivity {
 
     TextView nameEnglish;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
+
+        Toolbar toolbar = findViewById(R.id.app_bar);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         nameEnglish = findViewById(R.id.birdItemTextView);
         Bundle bundle = getIntent().getExtras();
@@ -32,11 +40,6 @@ public class ItemListActivity extends AppCompatActivity {
             Bird obj = (Bird) bundle.getSerializable("NameEnglish");
             this.nameEnglish.setText("ID: " + obj.getId() + "\n" + "English Name: " + obj.getNameEnglish() + "\n" + "Danish Name: " + " " + obj.getNameDanish());
         }
-    }
-
-    public void onClickBackButton(View view) {
-        Intent intent = new Intent(ItemListActivity.this, BirdsActivity.class);
-        startActivity(intent);
     }
 }
 
