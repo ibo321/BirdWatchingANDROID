@@ -4,19 +4,22 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
+//import android.support.v7.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toolbar;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import android.support.v7.widget.Toolbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,76 +35,29 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BirdsActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
+public class BirdsActivity extends AppCompatActivity  {
 
-
-    GestureDetector gestureDetector;
+    BirdItemAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_birds);
 
+        Toolbar toolbar = findViewById(R.id.app_bar);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+
         TextView listHeader = new TextView(this);
         listHeader.setText("Birds");
         listHeader.setTextAppearance(android.R.style.TextAppearance_Large);
         ListView list = findViewById(R.id.birdsView);
         list.addHeaderView(listHeader);
-        gestureDetector = new GestureDetector(this, this);
 
         final BirdsActivity.ReadJSONFeedTask task = new BirdsActivity.ReadJSONFeedTask();
         task.execute("http://birdobservationservice.azurewebsites.net/Service1.svc/birds");
     }
 
-
-    //region Gesture
-    @Override
-    public boolean onDown(MotionEvent motionEvent) {
-        return true;
-    }
-
-    @Override
-    public void onShowPress(MotionEvent motionEvent) {
-
-    }
-
-    @Override
-    public boolean onSingleTapUp(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
-        return false;
-    }
-
-    @Override
-    public void onLongPress(MotionEvent motionEvent) {
-
-    }
-
-    @Override
-    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        boolean leftSwipe = e1.getX() > e2.getX();
-        if (leftSwipe) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        }
-        return true; // done
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        boolean eventHandlingFinished = true;
-        //return eventHandlingFinished;
-        return gestureDetector.onTouchEvent(event);
-    }
-    //endregion
-
-    public void onClickBackButton(View view) {
-        Intent intent = new Intent(BirdsActivity.this, MainActivity.class);
-        startActivity(intent);
-    }
 
     //region JSON async and REST
     private class ReadJSONFeedTask extends AsyncTask<String, Void, String> {
@@ -195,6 +151,29 @@ public class BirdsActivity extends AppCompatActivity implements GestureDetector.
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        MenuItem menuItem = menu.findItem(R.id.search);
+
+
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                adapter.getFilter().filter(s);
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
+
     //openHTTPconnection
     private String readJSonFeed(String urlString) throws IOException {
         StringBuilder stringBuilder = new StringBuilder();
@@ -230,5 +209,10 @@ public class BirdsActivity extends AppCompatActivity implements GestureDetector.
         }
     }
     //endregion
+
+    public void onClickBackButton(View view) {
+        Intent intent = new Intent(BirdsActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
 
 }

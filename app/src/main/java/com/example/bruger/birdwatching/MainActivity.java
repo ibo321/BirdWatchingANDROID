@@ -28,12 +28,14 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.app_bar);
         toolbar.setTitle("");
-        toolbar.setNavigationIcon(R.drawable.birdowl);
+//        toolbar.setNavigationIcon(R.drawable.birdowl);
         setSupportActionBar(toolbar);
 
         gestureObject = new GestureDetectorCompat(this, new LearningGesture());
     }
 
+
+    //region appbar menu items
     @SuppressLint("RestrictedApi")
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -43,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
             MenuBuilder m = (MenuBuilder) menu;
             m.setOptionalIconsVisible(true);
         }
+        menu.findItem(R.id.search).setVisible(false);
         return super.onCreateOptionsMenu(menu);
-
     }
 
     @Override
@@ -63,32 +65,36 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "code", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.logout:
+                //kalder metoden signout når der bliver klikket på ikonet
                 signOut();
             default:
         }
         return super.onOptionsItemSelected(item);
     }
+    //endregion
 
-    //gesture = hvor man slider til venstre/højre for at skifte side
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        this.gestureObject.onTouchEvent(event);
-        return super.onTouchEvent(event);
-    }
 
-    class LearningGesture extends GestureDetector.SimpleOnGestureListener {
+    //region gesture = hvor man slider til venstre/højre for at skifte side
         @Override
-        public boolean onFling(MotionEvent event1, MotionEvent event2, float velocityX, float velocityY) {
-            if (event2.getX() > event1.getX()) {
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                finish();
-                startActivity(intent);
-            }
-            return true;
+        public boolean onTouchEvent(MotionEvent event) {
+            this.gestureObject.onTouchEvent(event);
+            return super.onTouchEvent(event);
         }
-    }
 
-    //onClick buttons
+        class LearningGesture extends GestureDetector.SimpleOnGestureListener {
+            @Override
+            public boolean onFling(MotionEvent event1, MotionEvent event2, float velocityX, float velocityY) {
+                if (event2.getX() > event1.getX()) {
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    finish();
+                    startActivity(intent);
+                }
+                return true;
+            }
+        }
+    //endregion
+
+    //region onClickButtons
     public void onClickMyObservation(View view) {
         Intent intent = new Intent(MainActivity.this, MyObservationActivity.class);
         startActivity(intent);
@@ -107,5 +113,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         Toast.makeText(this, "Goodbye!", Toast.LENGTH_LONG).show();
     }
+    //endregion
 
 }

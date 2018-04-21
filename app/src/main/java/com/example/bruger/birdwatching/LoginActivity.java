@@ -50,12 +50,10 @@ public class LoginActivity extends AppCompatActivity {
 
         findViews();
         mAuth = FirebaseAuth.getInstance();
+
         Toolbar toolbar = findViewById(R.id.app_bar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
-
-        //skal sættes ind i en anden activity så man kan klikke på den og naviger til startsiden
-//        toolbar.setNavigationIcon(R.drawable.birdowl);
 
         //sharedPreference for at gemme email + password når brugeren klikker på checkboxen
         String email = sharedPref.getString(EMAIL, null);
@@ -109,6 +107,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         //jeg fjerner logout-button i loginactivity
         menu.findItem(R.id.logout).setVisible(false);
+        menu.findItem(R.id.search).setVisible(false);
         return super.onCreateOptionsMenu(menu);
 
     }
