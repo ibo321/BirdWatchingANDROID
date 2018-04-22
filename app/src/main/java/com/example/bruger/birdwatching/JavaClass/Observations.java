@@ -1,4 +1,4 @@
-package com.example.bruger.birdwatching;
+package com.example.bruger.birdwatching.JavaClass;
 
 import android.content.Intent;
 

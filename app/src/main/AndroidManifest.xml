@@ -14,32 +14,38 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".MainActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".Authentication.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MyObservationActivity">
+        <activity android:name=".ObservationsActivities.MyObservationActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
+                android:value=".MainActivity" />
         </activity>
-        <activity android:name=".BirdsActivity" >
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".MainActivity"/>
-        </activity>
-        <activity android:name=".ItemListActivity">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".BirdsActivity"/>
-    </activity>
-        <activity android:name=".RegisterActivity">
+        <activity android:name=".BirdActivities.BirdsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LoginActivity"/>
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".BirdActivities.ItemListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".BirdActivities.BirdsActivity" />
+        </activity>
+        <activity android:name=".Authentication.RegisterActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Authentication.LoginActivity" />
+        </activity>
+        <activity android:name=".BirdActivities.AddBirdActivity" />
+        <activity android:name=".ObservationsActivities.ObservationsItemListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ObservationsActivities.MyObservationActivity" />
         </activity>
     </application>
 

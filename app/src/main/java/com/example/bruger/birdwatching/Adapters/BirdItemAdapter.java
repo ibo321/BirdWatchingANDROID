@@ -1,4 +1,4 @@
-package com.example.bruger.birdwatching;
+package com.example.bruger.birdwatching.Adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.bruger.birdwatching.JavaClass.Bird;
+import com.example.bruger.birdwatching.R;
 
 import java.util.List;
 

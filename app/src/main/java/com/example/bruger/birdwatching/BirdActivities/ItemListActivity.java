@@ -1,23 +1,13 @@
-package com.example.bruger.birdwatching;
+package com.example.bruger.birdwatching.BirdActivities;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.io.IOException;
-import java.io.Serializable;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import com.example.bruger.birdwatching.JavaClass.Bird;
+import com.example.bruger.birdwatching.R;
 
 public class ItemListActivity extends AppCompatActivity {
 

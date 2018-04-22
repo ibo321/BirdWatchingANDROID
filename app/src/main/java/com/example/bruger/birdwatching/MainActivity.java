@@ -15,6 +15,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.bruger.birdwatching.Authentication.LoginActivity;
+import com.example.bruger.birdwatching.BirdActivities.BirdsActivity;
+import com.example.bruger.birdwatching.ObservationsActivities.MyObservationActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {

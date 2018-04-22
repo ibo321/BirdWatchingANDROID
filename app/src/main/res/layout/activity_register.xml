@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
-    tools:context=".RegisterActivity">
+    tools:context=".Authentication.RegisterActivity">
 
     <include
         layout="@layout/app_bar"

@@ -1,4 +1,4 @@
-package com.example.bruger.birdwatching;
+package com.example.bruger.birdwatching.JavaClass;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -6,7 +6,6 @@ import java.io.Serializable;
 
 public class Bird implements Serializable {
 
-    @SerializedName("crerated")
     private String created;
     private int id;
     private String nameDanish;

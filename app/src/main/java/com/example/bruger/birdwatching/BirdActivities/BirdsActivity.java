@@ -1,28 +1,26 @@
-package com.example.bruger.birdwatching;
+package com.example.bruger.birdwatching.BirdActivities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.view.GestureDetectorCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 //import android.support.v7.widget.SearchView;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
+
+import com.example.bruger.birdwatching.Adapters.BirdItemAdapter;
+import com.example.bruger.birdwatching.JavaClass.Bird;
+import com.example.bruger.birdwatching.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,7 +35,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class BirdsActivity extends AppCompatActivity  {
 
@@ -58,7 +55,9 @@ public class BirdsActivity extends AppCompatActivity  {
         floatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //skal kodes til at kunne POST
+                Intent intent = new Intent (BirdsActivity.this, AddBirdActivity.class);
+                startActivity(intent);
+
                 Toast.makeText(BirdsActivity.this, "float clicked", Toast.LENGTH_SHORT).show();
             }
         });

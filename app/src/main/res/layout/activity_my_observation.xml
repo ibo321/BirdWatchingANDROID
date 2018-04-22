@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context="com.example.bruger.birdwatching.MyObservationActivity">
+    tools:context="com.example.bruger.birdwatching.ObservationsActivities.MyObservationActivity">
 
     <include layout="@layout/app_bar"
         android:id="@+id/app_bar">

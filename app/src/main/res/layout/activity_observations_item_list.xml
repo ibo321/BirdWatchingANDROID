@@ -5,25 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".BirdActivities.ItemListActivity">
+    tools:context=".ObservationsActivities.ObservationsItemListActivity">
 
     <include
         layout="@layout/app_bar"
-        android:id="@+id/app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:id="@+id/app_bar">
+
     </include>
 
     <TextView
-        android:id="@+id/birdItemTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/observationItemTextView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/bird_message_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/observationsMessageTextView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
 </LinearLayout>

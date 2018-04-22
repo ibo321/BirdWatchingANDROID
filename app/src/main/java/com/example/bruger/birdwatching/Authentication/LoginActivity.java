@@ -1,11 +1,10 @@
-package com.example.bruger.birdwatching;
+package com.example.bruger.birdwatching.Authentication;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.menu.MenuBuilder;
@@ -21,9 +20,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
-import android.support.v7.app.ActionBar;
-import android.support.v4.widget.DrawerLayout;
 
+import com.example.bruger.birdwatching.MainActivity;
+import com.example.bruger.birdwatching.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

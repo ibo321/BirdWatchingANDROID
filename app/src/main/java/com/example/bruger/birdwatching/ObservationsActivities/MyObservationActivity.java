@@ -1,19 +1,19 @@
-package com.example.bruger.birdwatching;
+package com.example.bruger.birdwatching.ObservationsActivities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.example.bruger.birdwatching.Adapters.ObservationsItemAdapter;
+import com.example.bruger.birdwatching.JavaClass.Observations;
+import com.example.bruger.birdwatching.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,11 +26,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.text.DateFormat;
-import java.text.Format;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class MyObservationActivity extends AppCompatActivity {
@@ -68,9 +64,10 @@ public class MyObservationActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             TextView messageText = findViewById(R.id.messageText);
+            final List<Observations> observations = new ArrayList<>();
             try {
 
-                ArrayList<Observations> observationsList = new ArrayList<>();
+//                ArrayList<Observations> observationsList = new ArrayList<>();
                 JSONArray jsonArray = new JSONArray(result);
 
                 for (int i = 0; i < jsonArray.length(); i++) {
@@ -92,30 +89,43 @@ public class MyObservationActivity extends AppCompatActivity {
 //                            latitude + "\n" + "Longitude: " + longitude + "\n" + "Placename: " + placename + "\n" +
 //                            "Population: " + population + "\n" + "User ID: " + userId + "\n" + "Danish name: " + nameDanish + "\n" + "English Name: " + nameEnglish + "\n" + "\n");
 
-                    Observations observations = new Observations();
+                    Observations observation = new Observations();
 
-                    observations.setBirdId(birdId);
-                    observations.setComment(comment);
-                    observations.setDate(date);
-                    observations.setId(id);
-                    observations.setLatitude(latitude);
-                    observations.setLongitude(longitude);
-                    observations.setPlacename(placename);
-                    observations.setPopulation(population);
-                    observations.setUserId(userId);
-                    observations.setNameDanish(nameDanish);
-                    observations.setNameEnglish(nameEnglish);
+                    observation.setBirdId(birdId);
+                    observation.setComment(comment);
+                    observation.setDate(date);
+                    observation.setId(id);
+                    observation.setLatitude(latitude);
+                    observation.setLongitude(longitude);
+                    observation.setPlacename(placename);
+                    observation.setPopulation(population);
+                    observation.setUserId(userId);
+                    observation.setNameDanish(nameDanish);
+                    observation.setNameEnglish(nameEnglish);
 
-                    observationsList.add(observations);
+                    observations.add(observation);
                 }
-
-                ListView listView = findViewById(R.id.list_item);
-                ArrayAdapter<Observations> adapter = new ArrayAdapter<Observations>(MyObservationActivity.this, android.R.layout.simple_list_item_1, observationsList);
-                listView.setAdapter(adapter);
-
             } catch (JSONException ex) {
                 messageText.append(ex.toString());
             }
+
+            final ListView listView = findViewById(R.id.list_item);
+            //ArrayAdapter<Observations> adapter = new ArrayAdapter<Observations>(MyObservationActivity.this, android.R.layout.simple_list_item_1, observationsList);
+            ObservationsItemAdapter adapter = new ObservationsItemAdapter(getBaseContext(), R.layout.specific_list_observations, observations);
+            listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    try {
+                        Intent intent = new Intent(MyObservationActivity.this, ObservationsItemListActivity.class);
+                        intent.putExtra("NameEnglish", (Observations) listView.getItemAtPosition(i));
+                        startActivity(intent);
+                    } catch (Exception ex){
+                        Log.d("myobserv", ex.toString());
+                    }
+
+                }
+            });
         }
 
         @Override
