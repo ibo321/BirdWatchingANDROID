@@ -41,17 +41,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Authentication.LoginActivity" />
         </activity>
-        <activity android:name=".BirdActivities.AddBirdActivity">
+        <activity android:name=".ObservationsActivities.ObservationsItemListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ObservationsActivities.MyObservationActivity" />
+        </activity>
+        <activity android:name=".ObservationsActivities.AddObservation">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ObservationsActivities.MyObservationActivity" />
+        </activity>
+    </application>
 
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".BirdActivities.BirdsActivity" />
-    </activity>
-    <activity android:name=".ObservationsActivities.ObservationsItemListActivity">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".ObservationsActivities.MyObservationActivity" />
-    </activity>
-</application>
-
-    </manifest>
+</manifest>

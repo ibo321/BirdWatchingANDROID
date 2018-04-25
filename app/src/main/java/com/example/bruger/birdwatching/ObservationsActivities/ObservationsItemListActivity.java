@@ -1,5 +1,6 @@
 package com.example.bruger.birdwatching.ObservationsActivities;
 
+import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -10,7 +11,9 @@ import com.example.bruger.birdwatching.R;
 
 public class ObservationsItemListActivity extends AppCompatActivity {
 
-    TextView nameEnglish;
+    TextView itemDescription;
+
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,11 +25,12 @@ public class ObservationsItemListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //jeg henter min intent.getExtra metode i min MyObservationActivity og putter den ind i en bundle og fremviser det i denne aktivitet
-        nameEnglish = findViewById(R.id.observations_content_description_view);
+        itemDescription = findViewById(R.id.observations_content_description_view);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             Observations obj = (Observations) bundle.getSerializable("NameEnglish");
-            this.nameEnglish.setText("ID: "  + obj.getId() + "\n" + "Danish name: " + obj.getNameDanish());
+            this.itemDescription.setText("ID: "  + obj.getId() + "\n" + "Danish name: " + obj.getNameDanish());
+            itemDescription.setTextColor(getResources().getColor(R.color.blue));
         }
     }
 }

@@ -2,6 +2,7 @@ package com.example.bruger.birdwatching.ObservationsActivities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bruger.birdwatching.Adapters.ObservationsItemAdapter;
 import com.example.bruger.birdwatching.JavaClass.Observations;
@@ -32,6 +34,7 @@ import java.util.List;
 public class MyObservationActivity extends AppCompatActivity {
 
     ListView list;
+    FloatingActionButton floatButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,15 @@ public class MyObservationActivity extends AppCompatActivity {
 
         list = findViewById(R.id.list_item);
 
+        floatButton = findViewById(R.id.floatButtonAddObservation);
+        floatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (MyObservationActivity.this, AddObservation.class);
+                startActivity(intent);
+                Toast.makeText(MyObservationActivity.this, "clicked float", Toast.LENGTH_SHORT).show();
+            }
+        });
         //Tilføjer en titel til mit listView "Observations"
 //        TextView listHeader = new TextView(this);
 //        listHeader.setText("Observations");

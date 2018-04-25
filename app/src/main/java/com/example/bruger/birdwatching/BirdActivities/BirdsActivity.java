@@ -39,7 +39,6 @@ import java.util.List;
 public class BirdsActivity extends AppCompatActivity  {
 
     BirdItemAdapter adapter;
-    FloatingActionButton floatButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,18 +49,6 @@ public class BirdsActivity extends AppCompatActivity  {
         Toolbar toolbar = findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        //Floatbutton onClickListener
-        floatButton = findViewById(R.id.floatButtonAddBird);
-        floatButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent (BirdsActivity.this, AddBirdActivity.class);
-                startActivity(intent);
-
-                Toast.makeText(BirdsActivity.this, "float clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         //"BIRD" title
         TextView listHeader = new TextView(this);
@@ -140,7 +127,7 @@ public class BirdsActivity extends AppCompatActivity  {
             //ArrayAdapter<Bird> adapter = new ArrayAdapter<Bird>(BirdsActivity.this, android.R.layout.simple_list_item_1, birds);
 
             //Custom adapter jeg har oprettet
-            BirdItemAdapter adapter = new BirdItemAdapter(getBaseContext(), R.layout.specific_list, birds);
+            BirdItemAdapter adapter = new BirdItemAdapter(getBaseContext(), R.layout.specific_list_birds, birds);
             listView.setAdapter(adapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override

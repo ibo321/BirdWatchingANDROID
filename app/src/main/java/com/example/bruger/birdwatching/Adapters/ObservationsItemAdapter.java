@@ -1,12 +1,15 @@
 package com.example.bruger.birdwatching.Adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
+import android.media.Image;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -30,12 +33,13 @@ public class ObservationsItemAdapter extends ArrayAdapter<Observations> {
         this.resource = resource;
     }
 
+    @SuppressLint("SetTextI18n")
     @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         Observations observations = getItem(position);
         String nameEnglish = observations.getNameEnglish();
-        String placename = observations.getPlacename();
+        String userId = observations.getUserId();
         LinearLayout observationsView;
         if (convertView == null) {
             observationsView = new LinearLayout(getContext());
@@ -46,14 +50,17 @@ public class ObservationsItemAdapter extends ArrayAdapter<Observations> {
             observationsView = (LinearLayout) convertView;
         }
 
-        TextView textView = observationsView.findViewById(R.id.specific_item_observation_list);
-        TextView textView1 = observationsView.findViewById(R.id.specific_item_observation_list2);
+        //find views by id
+        TextView nameEnglishView = observationsView.findViewById(R.id.observation_listview_title_for_each_item);
+        TextView userIdView = observationsView.findViewById(R.id.observation_listview_title_for_each_item2);
+        ImageView imageView = observationsView.findViewById(R.id.imageView);
 
-        textView.setText("Name in english: " + nameEnglish);
-        textView1.setText("Placename: " + placename);
+        nameEnglishView.setText(nameEnglish);
+        userIdView.setText("User ID: " + userId );
+        imageView.setImageResource(R.drawable.birdowl);
 
-        textView.setTextColor(getContext().getColor(R.color.purple));
-        textView1.setTextColor(getContext().getColor(R.color.red));
+        nameEnglishView.setTextColor(getContext().getColor(R.color.colorAccent));
+        userIdView.setTextColor(getContext().getColor(R.color.AntiqueWhite));
         return observationsView;
     }
 }
