@@ -46,11 +46,12 @@ public class BirdsActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_birds);
 
+        //Toolbar (actionbar)
         Toolbar toolbar = findViewById(R.id.app_bar);
-        toolbar.setTitle("");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //Floatbutton onClickListener
         floatButton = findViewById(R.id.floatButtonAddBird);
         floatButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,12 +62,15 @@ public class BirdsActivity extends AppCompatActivity  {
                 Toast.makeText(BirdsActivity.this, "float clicked", Toast.LENGTH_SHORT).show();
             }
         });
+
+        //"BIRD" title
         TextView listHeader = new TextView(this);
         listHeader.setText("Birds");
         listHeader.setTextAppearance(android.R.style.TextAppearance_Large);
         ListView list = findViewById(R.id.birdsView);
         list.addHeaderView(listHeader);
 
+        //REST URL
         final BirdsActivity.ReadJSONFeedTask task = new BirdsActivity.ReadJSONFeedTask();
         task.execute("http://birdobservationservice.azurewebsites.net/Service1.svc/birds");
     }
@@ -89,7 +93,7 @@ public class BirdsActivity extends AppCompatActivity  {
         @Override
         protected void onPostExecute(String result) {
             Log.d("mybird", result);
-            TextView messageTextView = findViewById(R.id.messageText);
+            TextView messageTextView = findViewById(R.id.birds_exception_message);
             final List<Bird> birds = new ArrayList<>();
             try {
 
@@ -158,7 +162,7 @@ public class BirdsActivity extends AppCompatActivity  {
         @Override
         protected void onCancelled(String message) {
             super.onCancelled(message);
-            final TextView textview = findViewById(R.id.messageText);
+            final TextView textview = findViewById(R.id.birds_exception_message);
             textview.setText(message);
         }
 

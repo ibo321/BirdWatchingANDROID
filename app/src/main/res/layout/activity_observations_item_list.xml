@@ -13,14 +13,16 @@
 
     </include>
 
+
+    <!--Den bruges i min observationAdapter hvor jeg får fat i mit intent.getExtra metode-->
     <TextView
-        android:id="@+id/observationItemTextView"
+        android:id="@+id/observations_content_description_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/observationsMessageTextView"
+        android:id="@+id/observations_exception_message"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textAppearance="?android:attr/textAppearanceLarge" />

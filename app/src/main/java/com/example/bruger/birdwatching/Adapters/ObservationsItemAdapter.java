@@ -1,6 +1,7 @@
 package com.example.bruger.birdwatching.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +35,7 @@ public class ObservationsItemAdapter extends ArrayAdapter<Observations> {
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         Observations observations = getItem(position);
         String nameEnglish = observations.getNameEnglish();
+        String placename = observations.getPlacename();
         LinearLayout observationsView;
         if (convertView == null) {
             observationsView = new LinearLayout(getContext());
@@ -43,8 +45,15 @@ public class ObservationsItemAdapter extends ArrayAdapter<Observations> {
         } else {
             observationsView = (LinearLayout) convertView;
         }
-        TextView nameEnglishView = observationsView.findViewById(R.id.specific_item_observation_list);
-        nameEnglishView.setText(nameEnglish);
+
+        TextView textView = observationsView.findViewById(R.id.specific_item_observation_list);
+        TextView textView1 = observationsView.findViewById(R.id.specific_item_observation_list2);
+
+        textView.setText("Name in english: " + nameEnglish);
+        textView1.setText("Placename: " + placename);
+
+        textView.setTextColor(getContext().getColor(R.color.purple));
+        textView1.setTextColor(getContext().getColor(R.color.red));
         return observationsView;
     }
 }

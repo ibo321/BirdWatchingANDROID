@@ -12,12 +12,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!--Implementer min appbar ved at fortælle hvor min appbar ligger (layout="@layout/app_bar")-->
         <include
             android:id="@+id/app_bar"
             layout="@layout/app_bar">
 
         </include>
 
+        <!--Mit listview-->
         <ListView
             android:id="@+id/birdsView"
             android:layout_width="match_parent"
@@ -27,16 +29,18 @@
 
 
         <TextView
-            android:id="@+id/messageText"
+            android:id="@+id/birds_exception_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
 
+    <!--CoordinatorLayout bruger jeg til at placere min floatingButton hvor jeg har lyst-->
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!--FloatingButton-->
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/floatButtonAddBird"
             android:layout_width="wrap_content"

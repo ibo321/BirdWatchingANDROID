@@ -15,12 +15,14 @@ public class ObservationsItemListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_observations_item_list);
+
+        //Toolbar (actionbar)
         Toolbar toolbar = findViewById(R.id.app_bar);
-        toolbar.setTitle("");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        nameEnglish = findViewById(R.id.observationItemTextView);
+        //jeg henter min intent.getExtra metode i min MyObservationActivity og putter den ind i en bundle og fremviser det i denne aktivitet
+        nameEnglish = findViewById(R.id.observations_content_description_view);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             Observations obj = (Observations) bundle.getSerializable("NameEnglish");

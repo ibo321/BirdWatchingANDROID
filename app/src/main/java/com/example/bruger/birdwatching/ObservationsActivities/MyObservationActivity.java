@@ -38,12 +38,20 @@ public class MyObservationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_observation);
 
+        TextView titleText = findViewById(R.id.toolbar_title);
         Toolbar toolbar = findViewById(R.id.app_bar);
-        toolbar.setTitle("");
+        titleText.setText("Observations");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         list = findViewById(R.id.list_item);
+
+        //Tilføjer en titel til mit listView "Observations"
+//        TextView listHeader = new TextView(this);
+//        listHeader.setText("Observations");
+//        listHeader.setTextAppearance(android.R.style.TextAppearance_Large);
+//        list.addHeaderView(listHeader);
+
         final ReadJSONFeedTask task = new ReadJSONFeedTask();
         task.execute("http://birdobservationservice.azurewebsites.net/Service1.svc/observations?userid=");
     }
@@ -61,9 +69,10 @@ public class MyObservationActivity extends AppCompatActivity {
             }
         }
 
+        //Her definer jeg JsonArray og JsonObject for at tilføje mine properties fra min java-klasse "Observations" og ind i mit listview
         @Override
         protected void onPostExecute(String result) {
-            TextView messageText = findViewById(R.id.messageText);
+            TextView messageText = findViewById(R.id.observations_exception_message);
             final List<Observations> observations = new ArrayList<>();
             try {
 
@@ -85,9 +94,6 @@ public class MyObservationActivity extends AppCompatActivity {
                     final String userId = jsonObject.getString("UserId");
                     final String nameDanish = jsonObject.getString("NameDanish");
                     final String nameEnglish = jsonObject.getString("NameEnglish");
-//                    textView.append("Bird ID: " + birdId + "\n" + "Comment: " + comment + "\n" + "Date: " + date + "\n" + "ID: " + id + "\n" + "Latitude: " +
-//                            latitude + "\n" + "Longitude: " + longitude + "\n" + "Placename: " + placename + "\n" +
-//                            "Population: " + population + "\n" + "User ID: " + userId + "\n" + "Danish name: " + nameDanish + "\n" + "English Name: " + nameEnglish + "\n" + "\n");
 
                     Observations observation = new Observations();
 
@@ -119,6 +125,7 @@ public class MyObservationActivity extends AppCompatActivity {
                     try {
                         Intent intent = new Intent(MyObservationActivity.this, ObservationsItemListActivity.class);
                         intent.putExtra("NameEnglish", (Observations) listView.getItemAtPosition(i));
+                        intent.putExtra("Placename", (Observations) listView.getItemAtPosition(i));
                         startActivity(intent);
                     } catch (Exception ex){
                         Log.d("myobserv", ex.toString());
@@ -131,7 +138,7 @@ public class MyObservationActivity extends AppCompatActivity {
         @Override
         protected void onCancelled(String message) {
             super.onCancelled(message);
-            final TextView messageText = findViewById(R.id.messageText);
+            final TextView messageText = findViewById(R.id.observations_exception_message);
             messageText.setText(message);
 
         }

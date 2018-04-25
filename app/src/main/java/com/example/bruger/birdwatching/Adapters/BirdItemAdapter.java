@@ -41,8 +41,8 @@ public class BirdItemAdapter extends ArrayAdapter<Bird> {
         } else {
             birdView = (LinearLayout) convertView;
         }
-        TextView userIdView = birdView.findViewById(R.id.bird_item_title);
-        userIdView.setText(nameEnglish);
+        TextView nameEnglishVIew = birdView.findViewById(R.id.bird_item_title);
+        nameEnglishVIew.setText(nameEnglish);
         return birdView;
     }
 }
