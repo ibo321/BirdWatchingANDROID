@@ -19,33 +19,48 @@
         android:gravity="center"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add an observation"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="30dp"/>
 
         <EditText
+            android:id="@+id/addUserId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_action_assignment_icon"
+            android:inputType="text"
             android:ems="10"
             android:hint="User ID" />
 
         <EditText
+            android:id="@+id/addEnglishName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:drawableLeft="@drawable/ic_action_assignment_icon"
+            android:inputType="text"
             android:ems="10"
             android:hint="Birds english name" />
 
         <EditText
+            android:id="@+id/addDanishName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:drawableLeft="@drawable/ic_action_assignment_icon"
+            android:inputType="text"
             android:ems="10"
             android:hint="Birds danish name" />
 
         <EditText
+            android:id="@+id/addPopulation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="number"
 
             android:layout_marginTop="10dp"
             android:drawableLeft="@drawable/ic_action_assignment_icon"
@@ -53,6 +68,8 @@
             android:hint="Population" />
 
         <EditText
+            android:id="@+id/addLatitude"
+            android:inputType="number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -61,6 +78,8 @@
             android:hint="Latitude" />
 
         <EditText
+            android:id="@+id/addLongitude"
+            android:inputType="number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -68,24 +87,21 @@
             android:ems="10"
             android:hint="Longitude" />
 
-
-    </LinearLayout>
-
-    <android.support.design.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <Button
             android:id="@+id/addButton"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="80dp"
             android:layout_gravity="bottom |end"
-            android:layout_margin="75dp"
-            android:background="@drawable/radious"
+            android:background="@drawable/radious_transparent"
             android:text="Done"
-            tools:ignore="HardcodedText" />
+            android:textColor="@color/black"
 
-    </android.support.design.widget.CoordinatorLayout>
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+
 
 
 </android.support.constraint.ConstraintLayout>

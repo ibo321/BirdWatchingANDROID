@@ -2,10 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.bruger.birdwatching">
 
-    <uses-permission android:name="android.permission.INTERNET" />
 
-    <!-- skal sættes istedet for "android:label=""" -->
-    <!-- android:label="@string/app_name" -->
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,44 +11,64 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <!--MainActivity-->
         <activity android:name=".MainActivity" />
-        <activity android:name=".Authentication.LoginActivity">
+
+        <!--LoginActivity-->
+        <activity
+            android:name=".Authentication.LoginActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--MyObservationActivity-->
         <activity android:name=".ObservationsActivities.MyObservationActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+
+        <!--BirdActivity-->
         <activity android:name=".BirdActivities.BirdsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+
+        <!--ItemListActivity-->
         <activity android:name=".BirdActivities.ItemListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".BirdActivities.BirdsActivity" />
         </activity>
-        <activity android:name=".Authentication.RegisterActivity">
+
+        <!--RegisterActivity-->
+        <activity
+            android:name=".Authentication.RegisterActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Authentication.LoginActivity" />
         </activity>
+
+        <!--ObservationsItemListActivity-->
         <activity android:name=".ObservationsActivities.ObservationsItemListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ObservationsActivities.MyObservationActivity" />
         </activity>
-        <activity android:name=".ObservationsActivities.AddObservation">
+
+        <!--AddObservationActivity-->
+        <activity
+            android:name=".ObservationsActivities.AddObservation"
+            android:windowSoftInputMode="adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ObservationsActivities.MyObservationActivity" />
         </activity>
     </application>
-
 </manifest>
